@@ -6,28 +6,18 @@ const placementEventSchema = new Schema(
             type: String,
             required: true
         },
-        company: {
-            type: String,
-            required: true
-        },
         description: {
             type: String,
             required: true
-        },
+        }, 
+        link: {
+            type: String,
+            lowercase: true
+        }, 
         date: {
             type: Date,
             required: true
         },
-        eligibilityCriteria: {
-            type: String,
-            required: true
-        },
-        registeredStudents: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Student" // Assuming you have a "Student" model
-            }
-        ]
     },
     { timestamps: true }
 );

@@ -2,13 +2,12 @@ import mongoose, { Schema } from "mongoose";
 
 const notificationSchema = new Schema(
     {
-        message: {
+        title: {
             type: String,
             required: true
         },
-        targetRole: {
+        message: {
             type: String,
-            enum: ["student", "staff", "tpo", "admin"],
             required: true
         },
         createdBy: {

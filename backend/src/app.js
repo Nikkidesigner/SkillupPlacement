@@ -31,7 +31,14 @@ app.get("/", (req, res) => {
 
 // Routes import
 import authRouter from "./routes/auth.routes.js";
+import adminRoutes from "./routes/admin.routes.js";
+import notificationRoutes from "./routes/notification.routes.js";
+
+// Routes Use
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1", notificationRoutes);
+app.use("/api/v1", adminRoutes);
+
 
 // Global error-handling middleware (should be placed after all routes)
 app.use((err, req, res, next) => {

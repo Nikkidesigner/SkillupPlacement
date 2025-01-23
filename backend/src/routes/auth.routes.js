@@ -16,7 +16,10 @@ router.get("/staff-dashboard", verifyToken, authorizeRoles("staff"), (req, res) 
 });
 
 // Student Registration Route
-router.post("/register", registerStudent);
+router.post(
+    "/register", 
+    registerStudent
+);
 
 // Login for Student, Staff, and TPO
 router.post("/login", loginUser);
