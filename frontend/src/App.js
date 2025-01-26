@@ -1,30 +1,46 @@
-import "./App.css"
-import Header from "./components/common/header/Header"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import About from "./components/about/About"
-import CourseHome from "./components/allcourses/CourseHome"
-import Team from "./components/team/Team"
-import Pricing from "./components/pricing/Pricing"
-import Blog from "./components/blog/Blog"
-import Footer from "./components/common/footer/Footer"
-import Home from "./components/home/Home"
-import Profile from "./components/Profile/Profile"
-import Contact from "./components/contact/Contact.jsx";
+import "./App.css"
+
+import StudentHome  from "./components/home/student/StudentHome.jsx";
+import  Notifications  from "./components/home/student/Notifications/Notifications.jsx";
+import  Profile from "./components/home/student/Profile/Profile.jsx";
+
+
+import Welcome from "./components/welcome/Welcome.jsx";
+
+import About from "./components/about/About.jsx";
+import  Contact  from "./components/contact/Contact.jsx";
+import Team  from "./components/team/Team.jsx";
+import Testimonal from "./components/home/student/testimonal/Testimonal.jsx";
+import Login from "./components/login/Login.jsx";
+import Register from "./components/Register/Register.jsx";
+
 function App() {
   return (
     <>
     <Router>
-      <Header />
       <Switch>
-        <Route exact path='/' component={Home} />
+        {/*common routes */}
         <Route exact path='/about' component={About} />
-        <Route exact path='/courses' component={CourseHome} />
-        <Route exact path='/team' component={Team} />
-        <Route exact path='/pricing' component={Pricing} />
-        <Route exact path='/journal' component={Blog} />
         <Route exact path='/contact' component={Contact} />
+        <Route exact path='/team' component={Team} />
+        <Route exact path='/testimonals' component={Testimonal} />
+
+
+        {/*welcome page */}
+        <Route exact path='/' component={Welcome} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/Register' component={Register} />
+
+
+
+        {/*student routes*/}
+        <Route exact path='/student/home' component={StudentHome} />
+        <Route exact path='/student/notifications' component={Notifications} />
+        <Route exact path='/student/Profile' component={Profile} />
+        
+
       </Switch>
-      <Footer />
     </Router>
   </>
   )
