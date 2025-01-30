@@ -22,9 +22,16 @@ router.post(
 );
 
 // Login for Student, Staff, and TPO
-router.post("/login", loginUser);
+router.post(
+    "/login", 
+    loginUser
+);
 
 // Logout Route (Protected)
-router.delete("/logout", verifyToken, logoutUser);
+router.delete(
+    "/logout", 
+    verifyToken, 
+    logoutUser
+);
 
 export default router;

@@ -20,13 +20,19 @@ const studentSchema = new Schema(
         phone: {
             type: String,
             required: true,
-            trim: true, 
-            unique: true,
+            trim: true,
+            unique: true
         },
-        examHistory: [
+        registeredExams: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "ExamResult"
+                ref: "Exam" // Exams the student is assigned to
+            }
+        ],
+        examAttempts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "ExamAttempt" // References the student's attempts
             }
         ],
         studyMaterials: [

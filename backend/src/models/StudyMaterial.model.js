@@ -12,7 +12,7 @@ const studyMaterialSchema = new Schema(
         },
         uploadedBy: {
             type: Schema.Types.ObjectId,
-            ref: "Staff", // Assuming you have a "Staff" model
+            ref: "User", // Assuming you have a "Staff" model
             required: true
         },
         fileUrl: {

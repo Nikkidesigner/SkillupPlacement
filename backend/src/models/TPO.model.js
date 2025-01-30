@@ -7,6 +7,12 @@ const tpoSchema = new Schema(
             ref: "User",
             required: true
         },
+        createdExams: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Exam" // Exams created by this TPO
+            }
+        ],
         notifications: [
             {
                 type: Schema.Types.ObjectId,

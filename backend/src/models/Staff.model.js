@@ -12,10 +12,10 @@ const staffSchema = new Schema(
             required: true,
             trim: true
         },
-        assignedExams: [
+        createdExams: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Exam"
+                ref: "Exam" // Exams created by this staff member
             }
         ],
         notifications: [

@@ -8,17 +8,30 @@ const examSchema = new Schema(
         },
         category: {
             type: String,
-            
+            enum: ["Aptitude", "Technical"],
             required: true
+        },
+        subCategory: {
+            type: String,
+            required: function () {
+                return this.category === "Aptitude"; // Required for aptitude exams
+            }
+        },
+        department: {
+            type: String,
+            required: function () {
+                return this.category === "Technical"; // Required for technical exams
+            }
         },
         createdBy: {
             type: Schema.Types.ObjectId,
-            ref: "Staff", // Assuming you have a "Staff" model
+            ref: "User", // The Staff or TPO who created the exam
             required: true
         },
         duration: {
             type: Number,
-            required: true // Duration in minutes
+            default: 45, // Fixed exam duration
+            required: true
         },
         passingScore: {
             type: Number,
@@ -27,7 +40,7 @@ const examSchema = new Schema(
         questions: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Question" // Assuming you have a "Question" model
+                ref: "Question" // References the Question model
             }
         ],
         scheduledDate: {
@@ -37,13 +50,18 @@ const examSchema = new Schema(
         participants: [
             {
                 type: Schema.Types.ObjectId,
-                ref: "Student" // Assuming you have a "Student" model
+                ref: "User" // Students who attempt the exam
             }
         ],
         status: {
             type: String,
             enum: ["upcoming", "ongoing", "completed"],
+            default: "upcoming",
             required: true
+        },
+        resultsPublished: {
+            type: Boolean,
+            default: false // Results will be manually published by Staff/TPO
         }
     },
     { timestamps: true }

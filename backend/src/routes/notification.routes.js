@@ -23,6 +23,8 @@ router.post(
 
 router.get(
     "/notifications",
-    verifyToken, getNotifications);
+    verifyToken,
+    getNotifications
+);
 
 export default router;

@@ -33,15 +33,19 @@ app.get("/", (req, res) => {
 import authRouter from "./routes/auth.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import notificationRoutes from "./routes/notification.routes.js";
+import questionRoutes from "./routes/question.routes.js";
+import examRoutes from "./routes/exam.routes.js";
 
 // Routes Use
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1", notificationRoutes);
 app.use("/api/v1", adminRoutes);
+app.use("/api/v1", questionRoutes);
+app.use("/api/v1", examRoutes);
 
 
 // Global error-handling middleware (should be placed after all routes)
-app.use((err, req, res, next) => {
+app.use((err, req, res, next) => {git 
     console.error(err.stack);
     res.status(500).json({
         status: "error",

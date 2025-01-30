@@ -2,19 +2,24 @@ import mongoose, { Schema } from "mongoose";
 
 const questionSchema = new Schema(
     {
-        examId: {
-            type: Schema.Types.ObjectId,
-            ref: "Exam", // Assuming you have an "Exam" model
-            required: true
-        },
         questionText: {
             type: String,
             required: true
         },
         category: {
             type: String,
-            enum: ["Aptitude", "Technical", "C", "C++", "Java", "Python", "DBMS", "Networking"],
+            enum: ["Aptitude", "Technical"],
             required: true
+        },
+        subCategory: {
+            type: String,
+            required: true
+        },
+        department: {
+            type: String,
+            required: function () {
+                return this.category === "Technical"; // Required only if category is Technical
+            }
         },
         options: [
             {
@@ -33,10 +38,14 @@ const questionSchema = new Schema(
         },
         attachments: [
             {
-                type: String,
-                required: false // Optional field for attachments (e.g., image or file URLs)
+                type: String, // URLs of images or files
+                required: false
             }
-        ]
+        ],
+        usedInExam: {
+            type: Boolean,
+            default: false // Track if this question has been used
+        }
     },
     { timestamps: true }
 );
