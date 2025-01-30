@@ -12,10 +12,10 @@ import bcrypt from "bcryptjs";
  */
 export const createStaff = async (req, res) => {
     try {
-        const { username, email, password, department } = req.body;
+        const { fullName, username, email, password, department } = req.body;
 
         // Validate input
-        if (!username || !email || !password || !department) {
+        if (!fullName || !username || !email || !password || !department) {
             return res.status(400).json({ message: "All fields are required (username, email, password, department)." });
         }
 
@@ -35,6 +35,7 @@ export const createStaff = async (req, res) => {
 
         // Create Staff user
         const newUser = await User.create({
+            fullName,
             username,
             email,
             password,
@@ -51,6 +52,7 @@ export const createStaff = async (req, res) => {
             message: "Staff user created successfully",
             user: {
                 id: newUser._id,
+                fullName: newUser.fullName,
                 username: newUser.username,
                 email: newUser.email,
                 role: newUser.role,
@@ -66,10 +68,10 @@ export const createStaff = async (req, res) => {
 
 export const createTPO = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const { fullName, username, email, password } = req.body;
 
         // Validate input
-        if (!username || !email || !password) {
+        if (!fullName || !username || !email || !password) {
             return res.status(400).json({ message: "All fields are required (username, email, password)." });
         }
 
@@ -89,6 +91,7 @@ export const createTPO = async (req, res) => {
 
         // Create TPO user
         const newUser = await User.create({
+            fullName,
             username,
             email,
             password,
@@ -104,6 +107,7 @@ export const createTPO = async (req, res) => {
             message: "TPO user created successfully",
             user: {
                 id: newUser._id,
+                fullName: newUser.fullName,
                 username: newUser.username,
                 email: newUser.email,
                 role: newUser.role

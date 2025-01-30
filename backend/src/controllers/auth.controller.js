@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const registerStudent = asyncHandler(async (req, res) => {
-    const { username, email, password, department, year, phone } = req.body;
+    const {, username, email, password, department, year, phone } = req.body;
 
     // Validate input
     if (!username || !email || !password || !department || !year || !phone) {
