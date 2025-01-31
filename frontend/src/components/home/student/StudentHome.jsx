@@ -6,6 +6,7 @@ import Exams from "./Exams/Exams"
 import StudyMaterial from "./StudyMaterial/StudyMaterial"
 import Testimonal from "./testimonal/Testimonal"
 import Footer from "../../common/footer/Footer"
+import Back  from "../../common/back/Back";
 
 
 
@@ -14,6 +15,7 @@ const StudentHome = () => {
     <>
       <Header/>
       <Hero />
+      <Back title="Home" />
       <Exams/>
       <StudyMaterial/>
       <Testimonal />

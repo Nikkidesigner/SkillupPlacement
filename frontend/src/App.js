@@ -1,5 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import "./App.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import StudentHome  from "./components/home/student/StudentHome.jsx";
 import  Notifications  from "./components/home/student/Notifications/Notifications.jsx";

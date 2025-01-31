@@ -3,7 +3,15 @@ import Footer from "../common/footer/Footer.jsx";
 import Back from "../../components/common/back/Back.jsx";
 import "./Login.css";
 import Header from "../welcome/Header/Header";
+import { useHistory } from 'react-router-dom';
 const Login = () => {
+  const history = useHistory();
+
+  const handleLogin = () => {
+    // Perform any login logic here (e.g., authentication)
+    // After successful login, redirect to the home page
+    history.push('/student/home');
+  };
   return (
     <>
       <Header />
@@ -27,7 +35,7 @@ const Login = () => {
                 </label>
                 <a href="#">Forget Password</a>
               </div>
-              <button>Log in</button>
+              <button onClick={handleLogin}>Log in</button>
               <div className="register">
                 <p>
                   Don't have an account? <a href="#">Register</a>

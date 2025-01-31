@@ -8,7 +8,7 @@
   font-weight: 900;
 }
 .head .icon {
-  margin-left: 0px;
+  margin-left: auto;
 }
 /* Container for the logo and text */
 .logo-section {
@@ -52,6 +52,7 @@
 .flexSB {
   display:flex;
   justify-content: space-between; /* Space between logo section and social icons */
+
   /*align-items:center;*/
 }
 

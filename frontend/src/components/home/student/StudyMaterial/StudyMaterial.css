@@ -1,0 +1,66 @@
+.study-container {
+    margin: 20px;
+    padding: 15px;
+    background: #1eb2a6;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .video-slider {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .video-track {
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+    animation: scrollLoop 25s linear infinite;
+  }
+  
+  
+  .video-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+  
+  .video-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .video-card p {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .video-card:hover {
+    transform: scale(1.05);
+  }
+  .video-track:hover {
+    animation-play-state: paused;
+  }
+  
+  /* Scrolling Animation with No Break */
+@keyframes scrollLoop {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%); /* Moves by half the total width */
+    }
+  }
