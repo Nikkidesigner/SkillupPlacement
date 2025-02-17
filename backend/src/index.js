@@ -1,6 +1,8 @@
 import "dotenv/config";
 import connectDB from "./db/index.db.js";
 import app from "./app.js";
+import "./utils/examStatusScheduler.js"; // Ensure the cron job is started
+
 
 const startServer = async () => {
     try {

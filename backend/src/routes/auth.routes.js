@@ -1,5 +1,5 @@
 import express from "express";
-import { registerStudent, loginUser, logoutUser } from "../controllers/auth.controller.js";
+import { registerStudent, loginUser, logoutUser, updateProfile } from "../controllers/auth.controller.js";
 import { verifyToken } from "../middlewares/auth.middleware.js";
 import { authorizeRoles } from "../middlewares/auth.middleware.js";
 
@@ -33,5 +33,14 @@ router.delete(
     verifyToken, 
     logoutUser
 );
+
+
+// Route for updating user profile
+router.put(
+    "/profile",
+    verifyToken,
+    updateProfile
+);
+
 
 export default router;

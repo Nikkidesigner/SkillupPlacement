@@ -5,10 +5,10 @@ import jwt from "jsonwebtoken";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const registerStudent = asyncHandler(async (req, res) => {
-    const {, username, email, password, department, year, phone } = req.body;
+    const { username, email, password, department, year, phone } = req.body;
 
     // Validate input
-    if (!username || !email || !password || !department || !year || !phone) {
+    if ( !username || !email || !password || !department || !year || !phone) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -120,4 +120,44 @@ export const logoutUser = asyncHandler(async (req, res) => {
     });
 
     res.status(200).json({ message: "Logged out successfully." });
+});
+
+
+
+/**
+ * @desc Update user profile
+ * @route PUT /api/v1/profile
+ * @access Authenticated users
+ */
+export const updateProfile = asyncHandler(async (req, res) => {
+    const userId = req.user.userId;
+    const { email, password, profilePicture } = req.body;
+
+    // Validate input
+    if (!email && !password && !profilePicture) {
+        return res.status(400).json({ message: "At least one field (email, password, profilePicture) is required to update." });
+    }
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+    if (!user) {
+        return res.status(404).json({ message: "User not found" });
+    }
+
+    // Update fields if provided
+    if (email) user.email = email;
+    if (password) user.password = password; // Ensure password is hashed in the model
+    if (profilePicture) user.profilePicture = profilePicture;
+
+    // Save the updated user
+    await user.save();
+
+    res.status(200).json({
+        message: "Profile updated successfully",
+        user: {
+            id: user._id,
+            email: user.email,
+            profilePicture: user.profilePicture
+        }
+    });
 });

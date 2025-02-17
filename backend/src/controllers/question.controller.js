@@ -9,10 +9,10 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 export const addQuestion = asyncHandler(async (req, res) => {
     const { questionText, category, subCategory, department, options, correctAnswer, difficulty, attachments } = req.body;
 
-    // Check if user is Admin
-    // FIXME: if (req.user.role !== "admin") {
-    //     return res.status(403).json({ message: "Access denied. Only Admin can add questions." });
-    // }
+    //Check if user is Admin
+    if (req.user.role !== "admin") {
+        return res.status(403).json({ message: "Access denied. Only Admin can add questions." });
+    }
 
     // Validate required fields
     if (!questionText || !category || !subCategory || !options || !correctAnswer || !difficulty) {
@@ -61,7 +61,7 @@ export const addQuestion = asyncHandler(async (req, res) => {
  */
 export const getQuestionsByCategory = asyncHandler(async (req, res) => {
     const { category } = req.params;
-    const { subCategory, department } = req.query; // Optional filters
+    const { subCategory, department } = req.query; 
 
     // Ensure valid category
     if (!["Aptitude", "Technical"].includes(category)) {
@@ -99,9 +99,9 @@ export const deleteQuestion = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     // Check if user is Admin
-    // FIXME: if (req.user.role !== "admin") {
-    //     return res.status(403).json({ message: "Access denied. Only Admin can delete questions." });
-    // }
+    if (req.user.role !== "admin") {
+        return res.status(403).json({ message: "Access denied. Only Admin can delete questions." });
+    }
 
     const deletedQuestion = await Question.findByIdAndDelete(id);
 
