@@ -1,0 +1,25 @@
+{
+  "name": "skillupplacement",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikkidesigner/SkillupPlacement.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nikkidesigner/SkillupPlacement/issues"
+  },
+  "homepage": "https://github.com/Nikkidesigner/SkillupPlacement#readme",
+  "dependencies": {
+    "react-hot-toast": "^2.5.2"
+  }
+}

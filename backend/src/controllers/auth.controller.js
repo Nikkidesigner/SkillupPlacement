@@ -65,13 +65,20 @@ export const registerStudent = asyncHandler(async (req, res) => {
 export const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
+    console.log('Login request body:', req.body); // Debugging line
+
+
     // Validate input
     if (!email || !password) {
         return res.status(400).json({ message: "Email and Password are required" });
     }
 
     // Find user by email
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).populate('role');
+
+    
+    console.log('User found:', user); // Debugging line
+
     console.log('User:', user); // Debugging line
     if (!user) {
         return res.status(404).json({ message: "User not found" });
@@ -84,12 +91,15 @@ export const loginUser = asyncHandler(async (req, res) => {
     console.log('Input Password:', password);      // Debugging line
 
     if (!isMatch) {
+        console.log('Password mismatch for user:', user.email); // Debugging line
+
         return res.status(400).json({ message: "Invalid credentials" });
     }
 
     // Generate JWT Token
     const accessToken = jwt.sign(
-        { userId: user._id, role: user.role },
+        { userId: user._id, role: user.role, email: user.email },
+
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: process.env.ACCESS_TOKEN_EXPIRY }
     );
